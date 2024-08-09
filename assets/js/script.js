@@ -42,15 +42,37 @@ function renderTodo() {
 
 document.querySelector("#new-task").addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    data.push({
-      id: data.length + 1,
-      title: e.target.value,
-    });
-
+    addTask(e.target.value);
     e.target.value = "";
-
-    renderTodo();
   }
+});
+
+// Função para adicionar uma nova tarefa
+function addTask(taskTitle) {
+  const taskId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+
+  data.push({
+    id: taskId,
+    title: taskTitle,
+  });
+
+  renderTodo();
+}
+
+// Evento para o botão .btnTarefa
+let btnTarefa = document.querySelectorAll(".btnTarefa");
+btnTarefa.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const newTaskInput = document.querySelector("#new-task");
+    const taskTitle = newTaskInput.value.trim();
+
+    if (taskTitle) {
+      addTask(taskTitle);
+      newTaskInput.value = "";
+    } else {
+      alert("Por favor, digite uma tarefa.");
+    }
+  });
 });
 
 renderTodo();
