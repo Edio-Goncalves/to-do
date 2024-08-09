@@ -65,6 +65,10 @@ body {
       padding: 5px;
       line-height: 30px;
       border-bottom: #ccc 1px solid;
+      &.complete {
+        text-decoration: line-through;
+        color: #999;
+      }
       input {
         margin-right: 10px;
       }
